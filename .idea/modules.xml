@@ -3,12 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidFloatingView.iml" filepath="$PROJECT_DIR$/AndroidFloatingView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AndroidFloatingView.iml" filepath="$PROJECT_DIR$/AndroidFloatingView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" filepath="$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" filepath="$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraryfloatingview/libraryfloatingview.iml" filepath="$PROJECT_DIR$/libraryfloatingview/libraryfloatingview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libraryfloatingview/libraryfloatingview.iml" filepath="$PROJECT_DIR$/libraryfloatingview/libraryfloatingview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/librarynetflow/librarynetflow.iml" filepath="$PROJECT_DIR$/librarynetflow/librarynetflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/librarynetflow/librarynetflow.iml" filepath="$PROJECT_DIR$/librarynetflow/librarynetflow.iml" />
     </modules>
   </component>
