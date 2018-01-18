@@ -10,7 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DemoFloatingWindow" />
             <option value="$PROJECT_DIR$/library-floatingview" />
-            <option value="$PROJECT_DIR$/librarynetflow" />
+            <option value="$PROJECT_DIR$/library-netflow" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
