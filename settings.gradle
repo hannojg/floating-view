@@ -1,1 +1,1 @@
-include ':libraryfloatingview', ':librarynetflow', ':DemoFloatingWindow'
+include ':library-floatingview', ':librarynetflow', ':DemoFloatingWindow'

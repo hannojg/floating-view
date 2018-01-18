@@ -9,18 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/DemoFloatingWindow" />
-            <option value="$PROJECT_DIR$/libraryfloatingview" />
+            <option value="$PROJECT_DIR$/library-floatingview" />
             <option value="$PROJECT_DIR$/librarynetflow" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/DemoFloatingWindow" />
-            <option value="$PROJECT_DIR$/libraryfloatingview" />
-            <option value="$PROJECT_DIR$/librarynetflow" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
