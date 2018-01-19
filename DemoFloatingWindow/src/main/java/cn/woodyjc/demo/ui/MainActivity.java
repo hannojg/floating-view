@@ -1,4 +1,4 @@
-package cn.woodyjc.floatingwindow.ui;
+package cn.woodyjc.demo.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import cn.june.floatingwindow.R;
+import cn.woodyjc.demo.R;
 
-import cn.woodyjc.floatingwindow.service.FloatingWindowService;
+import cn.woodyjc.demo.service.FloatingWindowService;
 
 public class MainActivity extends AppCompatActivity {
 

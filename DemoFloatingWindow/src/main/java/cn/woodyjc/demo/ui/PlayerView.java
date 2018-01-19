@@ -1,4 +1,4 @@
-package cn.woodyjc.floatingwindow.ui;
+package cn.woodyjc.demo.ui;
 
 import android.app.Service;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import cn.june.floatingwindow.R;
+import cn.woodyjc.demo.R;
 
 import java.io.IOException;
 

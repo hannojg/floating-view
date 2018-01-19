@@ -1,4 +1,4 @@
-package cn.woodyjc.floatingwindow.ui;
+package cn.woodyjc.demo.ui;
 
 import android.content.Context;
 import android.os.Handler;
@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import cn.june.floatingwindow.R;
+import cn.woodyjc.demo.R;
 
 import cn.woodyjc.android.floatingview.FloatingParams;
 import cn.woodyjc.android.floatingview.FloatingView;

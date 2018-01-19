@@ -1,4 +1,4 @@
-package cn.june.floatingwindow;
+package cn.woodyjc.demo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

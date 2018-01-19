@@ -1,4 +1,4 @@
-package cn.june.floatingwindow;
+package cn.woodyjc.demo;
 
 import org.junit.Test;
 
