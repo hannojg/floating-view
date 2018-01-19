@@ -14,7 +14,7 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.june.floatingwindow.R;
+import cn.june.floatingwindow.R;
 
 import cn.woodyjc.floatingwindow.ui.NetFlowFloatingView;
 import cn.woodyjc.floatingwindow.ui.PlayerView;

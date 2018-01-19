@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.june.floatingwindow.R;
+import cn.june.floatingwindow.R;
 
 import cn.woodyjc.floatingwindow.service.FloatingWindowService;
 

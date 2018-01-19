@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.june.floatingwindow.R;
+import cn.june.floatingwindow.R;
 
 import java.io.IOException;
 

@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.june.floatingwindow.R;
+import cn.june.floatingwindow.R;
 
 import cn.woodyjc.android.floatingview.FloatingParams;
 import cn.woodyjc.android.floatingview.FloatingView;
