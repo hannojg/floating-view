@@ -1,9 +1,11 @@
 package cn.woodyjc.android.floatingview;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -11,58 +13,60 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 /**
- * Created by June on 2016/8/13.
+ * 悬浮窗容器
+ * <p>
+ * Created by June on 2018/1/19.
  */
+
 public class FloatingView extends FrameLayout {
-	private static final String TAG       = "FloatingView";
+	private static final String TAG       = FloatingView.class.getSimpleName();
+	// 刷新位置所需的最短移动距离
 	private static final int    THRESHOLD = 5;
-	private Context context;
 
-	private boolean canDrag; // 防止多点触摸时导致view漂移
-	float touchStartX, touchStartY;
-	float tempX, tempY;
+	// 因为WindowManager.LayoutParams中的坐标原点不是屏幕左上角顶点(而在屏幕左边界和状态栏下边相交点)，所以要全屏幕自由移动就要考虑状态栏的高
+	protected int statusBarHeight; // 状态栏的高
 
-	protected        DisplayMetrics             dm;
-	protected static int                        statusBarHeight; // 状态栏的高
-	private          WindowManager              wm;
-	protected        WindowManager.LayoutParams params;
-	private          Options                    options;
+	private Context        context;
+	private FloatingParams options;
+	private boolean        canDrag; // 防止多点触摸时导致view漂移
+	private float          firstTouchedX;
+	private float          firstTouchedY;
 
-	private OnTouchListener onTouchListener;
+	// 悬浮窗的左上角顶点相对屏幕的坐标
+	private float tempX;
+	private float tempY;
 
-	public FloatingView(Context context) {
+	protected DisplayMetrics             dm;
+	private   WindowManager              wm;
+	protected WindowManager.LayoutParams winParams;
+
+	public FloatingView(@NonNull Context context) {
 		super(context);
+
 		this.context = context;
 		init();
 	}
 
-	// 初始化
+	/**
+	 * 初始化
+	 */
 	private void init() {
-		statusBarHeight = getStatusBarHeight(context);
+		statusBarHeight = Util.getStatusBarHeight(context);
 		wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 		dm = new DisplayMetrics();
 		wm.getDefaultDisplay().getMetrics(dm);
 
-		params = new WindowManager.LayoutParams();
-		params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-		params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-		params.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
-		params.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
-		params.format = PixelFormat.TRANSLUCENT;
-		params.gravity = Gravity.TOP | Gravity.LEFT;
-	}
-
-	public static int getStatusBarHeight(Context context) {
-		Resources resources = context.getResources();
-		int resId = resources.getIdentifier("status_bar_height", "dimen", "android");
-		if (resId > 0) {
-			return resources.getDimensionPixelSize(resId);
-		}
-		return 0;
+		winParams = new WindowManager.LayoutParams();
+		winParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+		winParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+		winParams.type = WindowManager.LayoutParams.TYPE_APPLICATION;
+		winParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
+		winParams.format = PixelFormat.TRANSLUCENT;
+		winParams.gravity = Gravity.TOP | Gravity.LEFT;
 	}
 
 	public WindowManager.LayoutParams getWindowLayoutParams() {
-		return params;
+		return winParams;
 	}
 
 	@Override
@@ -72,27 +76,31 @@ public class FloatingView extends FrameLayout {
 
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
+		// >>>自由拖动计算<<<
+
+		// 相对于屏幕的点坐标值
 		float ex = ev.getRawX();
 		float ey = ev.getRawY();
 
 		switch (ev.getActionMasked()) {
 			case MotionEvent.ACTION_DOWN:
 				canDrag = true;
-				touchStartX = ev.getX();
-				touchStartY = ev.getY();
-				//                Log.d(TAG, "dispatchTouchEvent()--getRawX=" + ex + ",getX" + touchStartX + ",getRawY=" + ey + ",getY" + touchStartY + ",lp.x=" + params.x + ",lp.y=" + params.y + ",statusBarHeight=" + statusBarHeight);
+				firstTouchedX = ev.getX();
+				firstTouchedY = ev.getY();
+				//				Log.d(TAG, "dispatchTouchEvent()--(getRawX=" + ex + ",getRawY=" + ey + ") , (getX=" + firstTouchedX + ",getY=" + firstTouchedY + ") , (lp.x=" + winParams.x + ",lp.y=" + winParams.y + ") ,statusBarHeight=" + statusBarHeight);
 				break;
 			case MotionEvent.ACTION_POINTER_DOWN:
-				canDrag = false;
+				canDrag = false;// 大于一个点时，因为会飘移而禁止拖动
 				break;
 			case MotionEvent.ACTION_MOVE:
-				tempX = ex - touchStartX;
-				tempY = ey - touchStartY - statusBarHeight;
+				tempX = ex - firstTouchedX;
+				tempY = ey - firstTouchedY - statusBarHeight;
 				//                Log.d(TAG, "dispatchTouchEvent()--x:" + tempX + ",y:" + tempY);
 				if (canDrag) {
-					if (Math.abs(tempX - params.x) > THRESHOLD || Math.abs(tempY - params.y) > THRESHOLD) {
-						calcAppropriatePosition(params, tempX, tempY);
-						wm.updateViewLayout(this, params);
+					if (Math.abs(tempX - winParams.x) > THRESHOLD || Math.abs(tempY - winParams.y) > THRESHOLD) {
+						updateLayout((int) tempX, (int) tempY);
+						//						calcAppropriatePosition(winParams, tempX, tempY);
+						//						updateLayout();
 					}
 				}
 				break;
@@ -103,58 +111,66 @@ public class FloatingView extends FrameLayout {
 		return super.dispatchTouchEvent(ev);
 	}
 
-	protected void updateFloatingViewLayout() {
-		wm.updateViewLayout(this, params);
+	protected void updateLayout(int x, int y) {
+		Point point = calcAppropriatePosition(winParams, x, y);
+		winParams.x = point.x;
+		winParams.y = point.y;
+		wm.updateViewLayout(this, winParams);
 	}
 
-	// 计算出合适的位置，默认为不可超出屏幕。可以重写该方法
-	protected void calcAppropriatePosition(WindowManager.LayoutParams lp, float x, float y) {
+	/**
+	 * 计算出悬浮窗位置坐标，默认会约束计算不超出屏幕边界，可重载本方法来自定义可以移动位置范围
+	 */
+	protected Point calcAppropriatePosition(WindowManager.LayoutParams lp, float x, float y) {
+		int tmpX = 0;
+		int tmpY = 0;
 		if (x < 0) { // 左
-			lp.x = 0;
+			tmpX = 0;
 		} else if (x > dm.widthPixels - lp.width) { // 右
-			lp.x = dm.widthPixels - lp.width;
+			tmpX = dm.widthPixels - lp.width;
 		} else {
-			lp.x = (int) x;
+			tmpX = (int) x;
 		}
 
 		if (y < -statusBarHeight) { // 上
-			lp.y = -statusBarHeight;
+			tmpY = -statusBarHeight;
 		} else if (y > dm.heightPixels - lp.height - statusBarHeight) { // 下
-			lp.y = dm.heightPixels - lp.height - statusBarHeight;
+			tmpY = dm.heightPixels - lp.height - statusBarHeight;
 		} else {
-			lp.y = (int) y;
+			tmpY = (int) y;
 		}
-		//        Log.d(TAG, "calcAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + lp.x + ",y:" + lp.y);
+//		Log.d(TAG, "calcAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + tmpX + ",y:" + tmpY);
+		return new Point(tmpX, tmpY);
 	}
 
-	public void setOptions(Options options) {
+	public FloatingParams getOptions() {
+		return options;
+	}
+
+	public void setOptions(FloatingParams options) {
 		this.options = options;
-		if (options == null) { //
-			DisplayMetrics dm = new DisplayMetrics();
-			wm.getDefaultDisplay().getMetrics(dm);
-			params.width = (int) (dm.widthPixels * 2F / 3F);
-			params.height = (int) (params.width * 9F / 16F);
-			params.x = (int) (dm.widthPixels / 3F - 5);
-			params.y = 5;
-
-		} else {
-			params.width = options.width;
-			params.height = options.height;
-			params.x = options.x;
-			params.y = options.y;
+		if (options == null) {
+			options = FloatingParams.getDefault(dm);
 		}
+
+		winParams.width = options.width;
+		winParams.height = options.height;
+		winParams.x = options.x;
+		winParams.y = options.y;
+		winParams.type = FloatingType.TYPE_SYSTEM;
 	}
 
-	public static class Options {
-		public int width;
-		public int height;
-		public int x;
-		public int y;
-
-		public Options() {
-
-		}
+	/**
+	 * 显示悬浮窗
+	 */
+	public void show() {
+		wm.addView(this, getWindowLayoutParams());
 	}
 
-
+	/**
+	 * 移除悬浮窗
+	 */
+	public void remove() {
+		wm.removeViewImmediate(this);
+	}
 }

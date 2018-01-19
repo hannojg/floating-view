@@ -30,7 +30,7 @@ public abstract class NetFlow {
             long deltaTime = lastNode.time - firstNode.time;
             long deltaNum = lastNode.sum - firstNode.sum;
             double speed = (double) deltaNum / deltaTime * 1000;
-            Log.d("netspeed", this.getClass().getSimpleName() + "-deltaTime:" + deltaTime + ", deltaNum:" + deltaNum + "---speed--" + speed);
+//            Log.d("netspeed", this.getClass().getSimpleName() + "-deltaTime:" + deltaTime + ", deltaNum:" + deltaNum + "---speed--" + speed);
             return speed;
         }
         return 0;

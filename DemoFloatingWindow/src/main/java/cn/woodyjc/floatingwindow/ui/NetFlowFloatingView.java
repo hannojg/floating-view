@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import com.june.floatingwindow.R;
 
+import cn.woodyjc.android.floatingview.FloatingParams;
 import cn.woodyjc.android.floatingview.FloatingView;
-import cn.woodyjc.android.floatingview.FloatingViewManager;
+import cn.woodyjc.android.floatingview.Util;
 import cn.woodyjc.android.netflow.NetDownFlow;
 import cn.woodyjc.android.netflow.NetUpFlow;
 
@@ -17,11 +18,11 @@ import cn.woodyjc.android.netflow.NetUpFlow;
  * Created by June on 2016/8/24.
  */
 public class NetFlowFloatingView {
-	Context             context;
-	FloatingViewManager floatingViewManager;
-	View                view;
-	TextView            upFlowTextView;
-	TextView            downFlowTextView;
+	Context      context;
+	FloatingView floatingView;
+	View         view;
+	TextView     upFlowTextView;
+	TextView     downFlowTextView;
 
 	NetDownFlow netDownFlow = new NetDownFlow();
 	NetUpFlow   netUpFlow   = new NetUpFlow();
@@ -45,15 +46,16 @@ public class NetFlowFloatingView {
 		});
 	}
 
-
 	public void show() {
-		floatingViewManager = new FloatingViewManager(context);
-		FloatingView.Options options = new FloatingView.Options();
+		FloatingParams options = new FloatingParams();
 		options.width = 300;
-		options.height = FloatingView.getStatusBarHeight(context);
+		options.height = Util.getStatusBarHeight(context);
 		options.x = 0;
 		options.y = 100;
-		floatingViewManager.addViewToWindow(view, options);
+		floatingView = new FloatingView(context);
+		floatingView.setOptions(options);
+		floatingView.addView(view);
+		floatingView.show();
 		handle();
 	}
 

@@ -5,7 +5,8 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidFloatingView.iml" filepath="$PROJECT_DIR$/AndroidFloatingView.iml" />
       <module fileurl="file://$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" filepath="$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-floatingview/library-floatingview.iml" filepath="$PROJECT_DIR$/library-floatingview/library-floatingview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/library-netflow/librarynetflow.iml" filepath="$PROJECT_DIR$/library-netflow/librarynetflow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library-netflow/library-netflow.iml" filepath="$PROJECT_DIR$/library-netflow/library-netflow.iml" />
+      <module fileurl="file://C:\Users\hp\ASMine\AndroidFloatingView\library-netflow\librarynetflow.iml" filepath="C:\Users\hp\ASMine\AndroidFloatingView\library-netflow\librarynetflow.iml" />
     </modules>
   </component>
 </project>
