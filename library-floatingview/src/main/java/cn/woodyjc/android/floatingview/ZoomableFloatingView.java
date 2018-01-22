@@ -5,8 +5,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 
 /**
- * 可缩放的
+ * 可两指触摸缩放的
  * <p>
+ * 缩放的计算是通过两个触摸点之间的距离计算的，这样不用各自计算横纵坐标缩放距离，使得缩放计算会显得简单些。
  * Created by June on 2016/8/17.
  */
 public class ZoomableFloatingView extends FloatingView {
@@ -69,7 +70,8 @@ public class ZoomableFloatingView extends FloatingView {
 	}
 
 	/**
-	 * 根据移动距离的增量大小来计算View的尺寸大小和位置坐标
+	 * 根据缩放距离的增量大小来计算View的尺寸大小和位置坐标。
+	 * 先把距离增量作为横向缩放增量，同比例缩放时利用宽高比计算出纵向缩放增量即可。
 	 *
 	 * @param deltaDis 可正可负
 	 */
