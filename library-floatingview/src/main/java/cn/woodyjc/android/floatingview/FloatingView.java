@@ -5,7 +5,6 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
@@ -27,7 +26,7 @@ public class FloatingView extends FrameLayout {
 	protected int statusBarHeight; // 状态栏的高
 
 	private Context        context;
-	private FloatingParams options;
+	private FloatingParams floatingParams;
 	private boolean        canDrag; // 防止多点触摸时导致view漂移
 	private float          firstTouchedX;
 	private float          firstTouchedY;
@@ -139,24 +138,24 @@ public class FloatingView extends FrameLayout {
 		} else {
 			tmpY = (int) y;
 		}
-//		Log.d(TAG, "calcAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + tmpX + ",y:" + tmpY);
+		//		Log.d(TAG, "calcAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + tmpX + ",y:" + tmpY);
 		return new Point(tmpX, tmpY);
 	}
 
-	public FloatingParams getOptions() {
-		return options;
+	public FloatingParams getFloatingParams() {
+		return floatingParams;
 	}
 
-	public void setOptions(FloatingParams options) {
-		this.options = options;
-		if (options == null) {
-			options = FloatingParams.getDefault(dm);
+	public void setFloatingParams(FloatingParams floatingParams) {
+		this.floatingParams = floatingParams;
+		if (floatingParams == null) {
+			floatingParams = FloatingParams.getDefault(dm);
 		}
 
-		winParams.width = options.width;
-		winParams.height = options.height;
-		winParams.x = options.x;
-		winParams.y = options.y;
+		winParams.width = floatingParams.width;
+		winParams.height = floatingParams.height;
+		winParams.x = floatingParams.x;
+		winParams.y = floatingParams.y;
 		winParams.type = FloatingType.TYPE_SYSTEM;
 	}
 
