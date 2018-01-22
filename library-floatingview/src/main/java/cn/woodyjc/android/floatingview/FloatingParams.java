@@ -41,14 +41,15 @@ public class FloatingParams {
 		this.type = type;
 	}
 
-	public static FloatingParams getDefault(DisplayMetrics dm) {
-		FloatingParams options = new FloatingParams();
-		options.width = (int) (dm.widthPixels * 2F / 3F);
-		options.height = (int) (options.width * 9F / 16F);
-		options.x = (int) (dm.widthPixels / 3F - 5);
-		options.y = 5;
-		options.type = FloatingType.TYPE_SYSTEM;
-		return options;
+	public static FloatingParams getDefault(int screenW, int screenH) {
+		float scale = 9F / 16F; //纵横比
+		FloatingParams fp = new FloatingParams();
+		fp.width = (int) (screenW * 2F / 3F);
+		fp.height = (int) (fp.width * scale);
+		fp.x = (int) (screenW / 3F - 5);
+		fp.y = 5;
+		fp.type = FloatingType.TYPE_SYSTEM;
+		return fp;
 	}
 
 }

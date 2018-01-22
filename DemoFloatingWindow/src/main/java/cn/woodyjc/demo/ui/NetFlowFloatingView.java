@@ -47,13 +47,13 @@ public class NetFlowFloatingView {
 	}
 
 	public void show() {
-		FloatingParams options = new FloatingParams();
-		options.width = 300;
-		options.height = Util.getStatusBarHeight(context);
-		options.x = 0;
-		options.y = 100;
+		FloatingParams fp = new FloatingParams();
+		fp.width = 300;
+		fp.height = Util.getStatusBarHeight(context);
+		fp.x = 0;
+		fp.y = 100;
 		floatingView = new FloatingView(context);
-		floatingView.setOptions(options);
+		floatingView.setFloatingParams(fp);
 		floatingView.addView(view);
 		floatingView.show();
 		handle();

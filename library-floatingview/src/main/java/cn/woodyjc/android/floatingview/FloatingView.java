@@ -149,7 +149,7 @@ public class FloatingView extends FrameLayout {
 	public void setFloatingParams(FloatingParams floatingParams) {
 		this.floatingParams = floatingParams;
 		if (floatingParams == null) {
-			floatingParams = FloatingParams.getDefault(dm);
+			throw new IllegalArgumentException("Error: floatingParams can not be NULL !!!");
 		}
 
 		winParams.width = floatingParams.width;

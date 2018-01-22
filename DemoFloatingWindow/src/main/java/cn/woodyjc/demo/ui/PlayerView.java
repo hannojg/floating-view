@@ -47,16 +47,16 @@ public class PlayerView implements View.OnTouchListener {
 		view = createView();
 
 		// 创建FloatingView
-		FloatingParams options = new FloatingParams();
+		FloatingParams fp = new FloatingParams();
 		DisplayMetrics dm = new DisplayMetrics();
 		((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(dm);
-		options.width = (int) (dm.widthPixels * 2F / 3F);
-		options.height = (int) (options.width * 9F / 16F);
-		options.x = (int) (dm.widthPixels / 3F - 5);
-		options.y = 5;
-		options.type = FloatingType.TYPE_SYSTEM;
+		fp.width = (int) (dm.widthPixels * 2F / 3F);
+		fp.height = (int) (fp.width * 9F / 16F);
+		fp.x = (int) (dm.widthPixels / 3F - 5);
+		fp.y = 5;
+		fp.type = FloatingType.TYPE_SYSTEM;
 		floatingView = new ZoomableFloatingView(context);
-		floatingView.setOptions(options);
+		floatingView.setFloatingParams(fp);
 
 		// 把内容View加到FloatingView，并显示
 		floatingView.addView(view);
