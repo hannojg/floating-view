@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidFloatingView.iml" filepath="$PROJECT_DIR$/AndroidFloatingView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" filepath="$PROJECT_DIR$/DemoFloatingWindow/DemoFloatingWindow.iml" />
+      <module fileurl="file://C:\Users\hp\ASMine\floating-view\AndroidFloatingView.iml" filepath="C:\Users\hp\ASMine\floating-view\AndroidFloatingView.iml" />
+      <module fileurl="file://C:\Users\hp\ASMine\floating-view\DemoFloatingWindow\DemoFloatingWindow.iml" filepath="C:\Users\hp\ASMine\floating-view\DemoFloatingWindow\DemoFloatingWindow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floating-view.iml" filepath="$PROJECT_DIR$/floating-view.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-floatingview/library-floatingview.iml" filepath="$PROJECT_DIR$/library-floatingview/library-floatingview.iml" />
+      <module fileurl="file://C:\Users\hp\ASMine\floating-view\library-floatingview\library-floatingview.iml" filepath="C:\Users\hp\ASMine\floating-view\library-floatingview\library-floatingview.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-netflow/library-netflow.iml" filepath="$PROJECT_DIR$/library-netflow/library-netflow.iml" />
+      <module fileurl="file://C:\Users\hp\ASMine\floating-view\library-netflow\library-netflow.iml" filepath="C:\Users\hp\ASMine\floating-view\library-netflow\library-netflow.iml" />
       <module fileurl="file://C:\Users\hp\ASMine\AndroidFloatingView\library-netflow\librarynetflow.iml" filepath="C:\Users\hp\ASMine\AndroidFloatingView\library-netflow\librarynetflow.iml" />
     </modules>
   </component>
