@@ -30,7 +30,7 @@ public class SomeFloatingView extends FloatingView {
 		} else {
 			lp.y = (int) y;
 		}
-		//        Log.d(TAG, "calcAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + lp.x + ",y:" + lp.y);
+		//        Log.d(TAG, "calculateAppropriatePosition()--x:" + x + ",y:" + y + " calc-> x:" + lp.x + ",y:" + lp.y);
 	}
 
 }

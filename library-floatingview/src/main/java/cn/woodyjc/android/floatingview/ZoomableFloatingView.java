@@ -10,16 +10,25 @@ import android.view.MotionEvent;
  * 缩放的计算是通过两个触摸点之间的距离变化量计算的，这样不用各自计算横纵坐标缩放距离，使得缩放计算会显得简单些。
  * Created by June on 2016/8/17.
  */
-public class ZoomableFloatingView extends FloatingView {
+public class ZoomableFloatingView extends DraggableFloatingView {
 	private final String TAG = ZoomableFloatingView.class.getSimpleName();
 	private Context context;
 
-	private boolean zoomable;
+	private boolean enableZoom;
+	private boolean zoomFlag;
 	private double  startDis; // 两点初始距离
 	private double  lastDis; // 上一次缩放后两点之间的距离
 
 	public ZoomableFloatingView(Context context) {
 		super(context);
+	}
+
+	/**
+	 * 设置可两指缩放
+	 * @param enable 默认可缩放
+	 */
+	public void setZoomable(boolean enable) {
+		this.enableZoom = enable;
 	}
 
 	@Override
@@ -32,7 +41,7 @@ public class ZoomableFloatingView extends FloatingView {
 				break;
 			case MotionEvent.ACTION_POINTER_DOWN:
 				if (pointerCount == 2) {
-					zoomable = true;
+					zoomFlag = true;
 					float disX = event.getX(0) - event.getX(1);
 					float disY = event.getY(0) - event.getY(1);
 					startDis = Math.sqrt(disX * disX + disY * disY); // 两个触摸点的初始距离
@@ -41,7 +50,7 @@ public class ZoomableFloatingView extends FloatingView {
 
 				break;
 			case MotionEvent.ACTION_MOVE:
-				if (zoomable && pointerCount == 2) {
+				if (zoomFlag && pointerCount == 2) {
 					float disX = event.getX(0) - event.getX(1);
 					float disY = event.getY(0) - event.getY(1);
 					double distance = Math.sqrt(disX * disX + disY * disY); // 瞬时距离
@@ -62,7 +71,7 @@ public class ZoomableFloatingView extends FloatingView {
 
 			case MotionEvent.ACTION_POINTER_UP:
 				if (pointerCount == 1) { // 由多个点释放到只剩一个点时，解除缩放状态
-					zoomable = false;
+					zoomFlag = false;
 				}
 				break;
 		}

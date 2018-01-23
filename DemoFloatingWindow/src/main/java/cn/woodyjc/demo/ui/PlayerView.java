@@ -15,14 +15,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import cn.woodyjc.demo.R;
-
 import java.io.IOException;
 
 import cn.woodyjc.android.floatingview.FloatingParams;
 import cn.woodyjc.android.floatingview.FloatingType;
 import cn.woodyjc.android.floatingview.FloatingView;
-import cn.woodyjc.android.floatingview.ZoomableFloatingView;
+import cn.woodyjc.demo.R;
 
 /**
  * Created by June on 2016/8/10.
@@ -31,7 +29,7 @@ public class PlayerView implements View.OnTouchListener {
 	private static final String TAG = PlayerView.class.getSimpleName();
 	private Context      context;
 	private FloatingView floatingView;
-	private View         view;
+	private View         contentView;
 	private ImageView    soundMute;
 	private ImageView    closeImgBtn;
 	private MediaPlayer  player;
@@ -44,9 +42,12 @@ public class PlayerView implements View.OnTouchListener {
 
 	public void show() {
 		// 创建内容View
-		view = createView();
+		contentView = createView();
 
 		// 创建FloatingView
+		floatingView = new FloatingView(context);
+
+		// 设置参数
 		FloatingParams fp = new FloatingParams();
 		DisplayMetrics dm = new DisplayMetrics();
 		((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getMetrics(dm);
@@ -55,11 +56,10 @@ public class PlayerView implements View.OnTouchListener {
 		fp.x = (int) (dm.widthPixels / 3F - 5);
 		fp.y = 5;
 		fp.type = FloatingType.TYPE_SYSTEM;
-		floatingView = new ZoomableFloatingView(context);
 		floatingView.setFloatingParams(fp);
 
 		// 把内容View加到FloatingView，并显示
-		floatingView.addView(view);
+		floatingView.addView(contentView);
 		floatingView.show();
 	}
 
