@@ -1,7 +1,5 @@
 package cn.woodyjc.android.floatingview;
 
-import android.util.DisplayMetrics;
-
 /**
  * 悬浮窗参数
  * <p>

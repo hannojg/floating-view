@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "cn.woodyjc.demo"
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion versions.minSdk
+//        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -23,10 +23,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.0.0'
-    compile project(':library-netflow')
-    compile 'com.github.woodyhi:floating-view:0.1.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation deps.junit
+    api deps.support.v7
+    implementation deps.support.compat
+
+    implementation project(':library-netflow')
+    implementation 'com.github.woodyhi:floating-view:0.1.0'
 //    implementation project(':library-floatingview')
 }

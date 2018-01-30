@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 23
+        minSdkVersion versions.minSdk
+//        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api deps.support.v7
+    testImplementation deps.junit
 }

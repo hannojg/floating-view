@@ -1,10 +1,17 @@
-
+[![Download](https://api.bintray.com/packages/june/maven/floating-view/images/download.svg) ](https://bintray.com/june/maven/floating-view/_latestVersion)
 [![](https://www.jitpack.io/v/woodyhi/AndroidFloatingView.svg)](https://www.jitpack.io/#woodyhi/AndroidFloatingView)
 
-# AndroidFloatingView
+# SimpleAndroidFloatingView
 简单android悬浮窗
 
+### import
+```
+dependencies {
+    implementation 'com.github.woodyhi:floating-view:0.1.0'
+}
+```
 
+### coding
 ```
 // 创建内容View
 View contentView = createView();
