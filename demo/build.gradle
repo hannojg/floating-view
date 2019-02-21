@@ -2,11 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion versions.compileSdk
-    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "cn.woodyjc.demo"
         minSdkVersion versions.minSdk
-//        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -29,6 +27,5 @@ dependencies {
     implementation deps.support.compat
 
     implementation project(':library-netflow')
-    implementation 'com.github.woodyhi:floating-view:0.1.0'
-//    implementation project(':library-floatingview')
+    implementation project(':library-floatingview')
 }

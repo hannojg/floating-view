@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/floating-view.iml" filepath="$PROJECT_DIR$/.idea/floating-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floating-view.iml" filepath="$PROJECT_DIR$/floating-view.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-floatingview/library-floatingview.iml" filepath="$PROJECT_DIR$/library-floatingview/library-floatingview.iml" />
       <module fileurl="file://$PROJECT_DIR$/library-netflow/library-netflow.iml" filepath="$PROJECT_DIR$/library-netflow/library-netflow.iml" />
     </modules>
