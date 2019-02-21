@@ -20,15 +20,12 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		netdownTV = (TextView) findViewById(R.id.netdownflow);
-		netupTV = (TextView) findViewById(R.id.netupflow);
-		findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
+		netdownTV = findViewById(R.id.netdownflow);
+		netupTV = findViewById(R.id.netupflow);
+		findViewById(R.id.play).setOnClickListener((v) -> {
 				Intent intent = new Intent(getApplicationContext(), FloatingWindowService.class);
 				intent.putExtra(FloatingWindowService.PARAM_KEY, FloatingWindowService.PARAM_VALUE);
 				startService(intent);
-			}
 		});
 
 	}
